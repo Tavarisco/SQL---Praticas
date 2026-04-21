@@ -1,0 +1,19 @@
+/*Consulta simples em SQL utilizando conceitos como:
+-Join
+-Group By
+-Order By
+-Having
+-Função SUM
+*/
+
+Use sakila;
+Select
+	c.customer_id As ID,
+    c.first_name As Nome, 
+    c.last_name As Sobrenome,
+    SUM(amount) As Total
+From payment p
+Join customer c Using(customer_id)
+Group by c.customer_id, c.first_name, c.last_name
+Having Total >= 150
+Order by total Desc
