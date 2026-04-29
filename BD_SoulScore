@@ -1,0 +1,40 @@
+SoulScore é um Banco de Dados relacional feito no MySql que visa melhorar o engajamento dos alunos de uma escola de musica, utilizando como principal dado pontuações dos alunos
+
+O obejtivo é permitir o acompanhamento da evolução dos alunos através de métricas como presença, desempenho e avaliações, que resultam e mais ou menos pontos para o aluno 
+
+Tecnologias utilizada
+  - MySql
+  - SQL
+  - WorkBench MySql
+
+Foi feita Modelagem Conceitual, Logica e Fisca do banco de dados e criado o no MySql WorkBench
+
+Funcionalidades
+  - Cadastro de alunos
+  - Registro de aulas
+  - Sistema de pontuação
+  - Consultas analíticas
+
+
+
+<img width="942" height="699" alt="Diagrama ER" src="https://github.com/user-attachments/assets/c40fd11a-75db-4ce9-a13f-edcb80366fa9" />
+
+
+<img width="487" height="558" alt="Exemplo de query" src="https://github.com/user-attachments/assets/9886d040-53bd-41a8-a94c-ba70c5c0cbbd" />
+
+
+Exemplo de Query
+
+```
+SELECT 
+  a.nome_aluno AS Aluno,
+  c.instrumento AS Curso,
+  e.pontos AS Pontos,
+  en.rua AS Endereco
+FROM aluno a
+JOIN aluno_curso ac ON a.idAluno = ac.idAluno
+JOIN curso c ON ac.idCurso = c.idCurso
+LEFT JOIN engajamento e ON a.idAluno = e.idAluno
+JOIN endereco en ON a.idEndereco = en.idEndereco;
+ORDER BY e.pontos DESC;
+```
